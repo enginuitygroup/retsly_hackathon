@@ -16,13 +16,20 @@ export default class Listing extends React.Component {
   }
 
   render() {
-    console.log(this.props.listing)
+    let listing_data = this.props.listing;
+debugger;
     return (
       <div className="row">
         <div className="col-xs-12">
-          <h1>Listing DATA!!!</h1>
-          
+          <h1>{listing_data.address}</h1>
+
+          <img src={listing_data.media[0]} />
+
           <p>
+            Bedrooms: {listing_data.bedrooms}
+            <br/>
+            Baths: {listing_data.baths}
+            <br/>
             Listing Data goes here!
           </p>
         </div>
