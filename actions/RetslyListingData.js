@@ -4,18 +4,20 @@ import {Action} from "griffin.js";
 export default class RetslyListingData extends Action {
   constructor(listingId) {
     super();
-debugger;
-    let params = `auth_token=${process.env.RETSLY_TOKEN}&address=${listingId}&limit=1`;
-    fetch(`https://rets.ly/api/v1/armls/listings?${params}`).then(
+
+    let params = `access_token=${process.env.RETSLY_TOKEN}`;
+    fetch(`https://rets.io/api/v1/armls/listings/${listingId}?${params}`, {cors: true}).then(
       this.handleSuccess.bind(this)
     , this.handleFailure.bind(this)
     );
   }
 
   handleSuccess(response) {
-    this.listing = "Listing DATA!!!!!!!!";
+    response.json().then((actualBody) => {
+      this.listing = actualBody.bundle;
 
-    this.dispatch();
+      this.dispatch();
+    });
   }
 
   handleFailure(response) {

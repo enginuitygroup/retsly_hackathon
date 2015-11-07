@@ -1,5 +1,5 @@
 import React from "react";
-// import HoodQBounds from "../actions/HoodQBounds";
+
 import RetslyListingData from "../actions/RetslyListingData"
 
 import {connect} from "griffin.js";
@@ -16,19 +16,14 @@ export default class Listing extends React.Component {
   }
 
   render() {
+    console.log(this.props.listing)
     return (
       <div className="row">
-        <div className="col-xs-3">
+        <div className="col-xs-12">
           <h1>Listing DATA!!!</h1>
-        </div>
-
-        <div className="col-xs-9">
+          
           <p>
-            MORE Data
-          </p>
-
-          <p>
-            {this.props.listing}
+            Listing Data goes here!
           </p>
         </div>
       </div>

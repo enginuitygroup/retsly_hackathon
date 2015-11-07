@@ -5,7 +5,7 @@ import RetslyListingData from "../actions/RetslyListingData";
 export default new class RetslyListingStore extends Store {
   reducer(state = null, action) {
     switch(action.constructor) {
-      case HoodQBounds:
+      case RetslyListingData:
         return action.listing;
       default:
         return state;
