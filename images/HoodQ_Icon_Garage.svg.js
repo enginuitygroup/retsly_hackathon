@@ -1,27 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
-	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
-	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
-	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
-	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
-	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
-	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
-	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
-]>
-<svg version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 61.25 55.5"
-	 enable-background="new 0 0 61.25 55.5" xml:space="preserve">
-<metadata>
-	<sfw  xmlns="&ns_sfw;">
-		<slices></slices>
-		<sliceSourceBounds  height="2331.49292" width="1447.365723" y="-2274.732178" x="-86.054634" bottomLeftOrigin="true">
-			</sliceSourceBounds>
-	</sfw>
-</metadata>
-<g>
-	<g>
+import React from "react"
+
+export default(
+<svg version="1.1" viewBox="0 0 61.25 55.5">
 		<g>
 			<path fill="#00AEEF" d="M58.43417,17.841404l-0.673973-2.370869c-0.095234-0.232962-0.151081-0.336707-0.33913-0.336707
 				h-0.893017H6.924129H3.68571c-0.185003,0-0.243833,0.103745-0.339689,0.336707l-0.673415,2.370869
@@ -36,7 +16,6 @@
 					C56.446728,53.377159,55.803696,54.02026,55.010128,54.02026z"/>
 			</g>
 		</g>
-	</g>
 	<path fill="#00AEEF" d="M58.921341,9.487515L30.913176,2.263896c-0.234205-0.058272-0.482946-0.058272-0.717089,0
 		L2.184814,9.487515c-0.700687,0.181399-1.1581,0.854194-1.066531,1.572461c0.09101,0.71771,0.70193,1.256441,1.425665,1.256441
 		h56.018879c0.723114,0,1.334656-0.538732,1.425667-1.256441C60.079502,10.341709,59.622028,9.668915,58.921341,9.487515z"/>
@@ -103,5 +82,5 @@
 			</g>
 		</g>
 	</g>
-</g>
 </svg>
+)
