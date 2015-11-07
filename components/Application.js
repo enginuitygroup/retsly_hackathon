@@ -14,6 +14,7 @@ export default class Application extends React.Component {
           <h1>It works!!!</h1>
 
           <Link to="/map">Go to Map!</Link>
+          <Link to="/listing">Go to Listing!</Link>
         </div>
       </div>
     )
