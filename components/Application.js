@@ -9,10 +9,12 @@ export default class Application extends React.Component {
     }
 
     return (
-      <div>
-        <h1>It works!!!</h1>
+      <div className="row">
+        <div className="col-xs-12">
+          <h1>It works!!!</h1>
 
-        <Link to="/map">Go to Map!</Link>
+          <Link to="/map">Go to Map!</Link>
+        </div>
       </div>
     )
   }

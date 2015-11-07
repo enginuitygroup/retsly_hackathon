@@ -48,5 +48,11 @@ module.exports = {
   }
 , plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(true)
+  , new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      , HOODQ_TOKEN: JSON.stringify(process.env.HOODQ_TOKEN)
+      }
+    })
   ]
 }
