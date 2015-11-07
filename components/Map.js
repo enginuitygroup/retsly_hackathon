@@ -1,6 +1,16 @@
 import React from "react";
+import HoodQBounds from "../actions/HoodQBounds";
 
+import {connect} from "griffin.js";
+
+import BoundsStore from "../stores/BoundsStore";
+
+@connect({places: BoundsStore})
 export default class Map extends React.Component {
+  componentDidMount() {
+    new HoodQBounds();
+  }
+
   render() {
     return (
       <div className="row">
@@ -9,7 +19,13 @@ export default class Map extends React.Component {
         </div>
 
         <div className="col-xs-9">
-          Map!!!!!!!!!
+          <p>
+            Map!!!!!!!!!
+          </p>
+
+          <p>
+            {this.props.places}
+          </p>
         </div>
       </div>
     )

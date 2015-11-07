@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import es6promise from "es6-promise";
+es6promise.polyfill();
+
 import { Router, Route, Link } from "react-router";
 
 import "./styles/bootstrap_imports.less";
