@@ -6,7 +6,7 @@ app.use("/assets", express.static("build"));
 
 app.use("/", express.static("public"));
 
-let port = process.env.port || 1337;
+let port = process.env.PORT || 1337;
 
 app.listen(port);
 
