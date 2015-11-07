@@ -15,6 +15,7 @@ ReactDOM.render(
       path="/" component={require("./components/Application")}
     >
       <Route path="map" component={require("./components/Map")} />
+      <Route path="listing" component={require("./components/listing")} />
     </Route>
   </Router>
 , container); // container is defined as an ID existing in the DOM
