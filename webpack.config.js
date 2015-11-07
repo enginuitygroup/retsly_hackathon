@@ -22,6 +22,10 @@ module.exports = {
       , loader: "babel-loader"
       }
     , {
+        test: /\.json$/
+      , loader: "json-loader"
+      }
+    , {
         test: /\.less$/
       , loader: "style-loader!css-loader!less-loader"
       }

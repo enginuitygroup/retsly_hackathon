@@ -1,37 +1,61 @@
 import React from "react";
 
-import RetslyListingData from "../actions/RetslyListingData"
+import Demographics from "./listing/Demographics";
+
+
+import {Action} from "griffin.js";
+
+import HoodQSearch from "../actions/HoodQSearch";
 
 import {connect} from "griffin.js";
+import SearchStore from "../stores/SearchStore";
 
-import RetslyListingStore from "../stores/RetslyListingStore";
-
-@connect({listing: RetslyListingStore})
-
+@connect({places: SearchStore})
 export default class Listing extends React.Component {
   componentDidMount() {
-    let listingId = "1af422efd678be825400649d55a89203";
+    new HoodQSearch("1 Main St, Hawaii");
+  }
 
-    new RetslyListingData(listingId);
+  renderPlaces() {
+    if(this.props.places) {
+      return this.props.places.map(function(place) {
+        return <p>{place.name}</p>
+      })
+    }
+  }
+
+  renderDemographics() {
+    if(this.props.places) {
+      let tapestry = this.props.places.find(function(place){
+        return place.place_category_key === "demographics";
+      });
+
+      if(tapestry) { return(
+        // <h2>{ tapestry.features["Dominant Tapestry Name"] }</h2>)
+        <p>{ tapestry.features["Dominant Tapestry Description"] }</p>)
+      };
+    };
   }
 
   render() {
-    let listing_data = this.props.listing;
-debugger;
     return (
       <div className="row">
         <div className="col-xs-12">
-          <h1>{listing_data.address}</h1>
-
-          <img src={listing_data.media[0]} />
+          <h1>Address!</h1>
+          <h3>Picture!</h3>
+          <h3>Reports!</h3>
 
           <p>
-            Bedrooms: {listing_data.bedrooms}
-            <br/>
-            Baths: {listing_data.baths}
-            <br/>
-            Listing Data goes here!
+            Demographics
           </p>
+
+          <div>
+            {this.renderDemographics() }
+          </div>
+
+          <div>
+            { this.renderPlaces() }
+          </div>
         </div>
       </div>
     )
