@@ -36,6 +36,14 @@ debugger;
               Baths: {listing_data.baths}
               <br/>
               Garage: {listing_data.garageSpaces}
+              <br/>
+              Type: {listing_data.type}
+              <br/>
+              Desc: {listing_data.publicRemarks}
+              <br/>
+              Price: {listing_data.price}
+              <br/>
+              Size: {listing_data.squareFootage}
             </p>
           </div>
         </div>
