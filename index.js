@@ -5,11 +5,12 @@ import es6promise from "es6-promise";
 es6promise.polyfill();
 
 import { Router, Route, Link } from "react-router";
+import createBrowserHistory from "history/lib/createBrowserHistory";
 
 import "./styles/bootstrap_imports.less";
 
 ReactDOM.render(
-  <Router>
+  <Router history={createBrowserHistory()}>
     <Route
       path="/" component={require("./components/Application")}
     >

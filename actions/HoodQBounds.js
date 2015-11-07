@@ -5,7 +5,7 @@ export default class HoodQBounds extends Action {
   constructor(northwest, southeast) {
     super();
 
-    let params = `auth_token=${process.env.HOODQ_TOKEN}&northwest=${northwest}&southeast={southeast}`
+    let params = `auth_token=${process.env.HOODQ_TOKEN}&northwest=${northwest}&southeast={southeast}`;
     fetch(`https://platform.hoodq.com/places/bounds?${params}`).then(
       this.handleSuccess.bind(this)
     , this.handleFailure.bind(this)
