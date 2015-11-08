@@ -16,7 +16,8 @@ import "../styles/Retsly.less"
 
 export default class Listing extends React.Component {
   componentDidMount() {
-    let listingId = "1af422efd678be825400649d55a89203";
+    // TODO pass in listing Id from Map
+    let listingId = "0b1b67c27c8fd8996088fdd97db4d1c5";
 
     this.mls_data = null
 

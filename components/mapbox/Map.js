@@ -1,5 +1,6 @@
 import React from "react";
 import HoodQBounds from "../../actions/HoodQBounds";
+import RetslyListingsByBox from "../../actions/RetslyListingsByBox"
 
 import debounce from "lodash/function/debounce";
 
@@ -36,8 +37,11 @@ export default class Map extends React.Component {
     console.log("HANDLE MOVE", event);
 
     let mapBounds = this.state.map.getBounds();
+    let northWest = mapBounds.getNorthWest();
+    let southEast = mapBounds.getSouthEast();
 
-    new HoodQBounds(mapBounds.getNorthWest(), mapBounds.getSouthEast());
+    new HoodQBounds(northWest, southEast);
+    new RetslyListingsByBox(northWest, southEast);
   }
 
   render() {

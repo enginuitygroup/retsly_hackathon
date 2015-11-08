@@ -6,6 +6,7 @@ import {connect} from "griffin.js";
 
 import BoundsStore from "../stores/BoundsStore";
 import FacilityTypesStore from "../stores/FacilityTypesStore";
+import RetslyListingStore from "../stores/RetslyListingStore";
 
 import Map from "./mapbox/Map";
 import Place from "./mapbox/Place";
@@ -14,11 +15,29 @@ import "../styles/Map.less";
 
 const sanFranLatLng = L.latLng(37.773972, -122.431297);
 
-@connect({places: BoundsStore, displayedFacilityTypes: FacilityTypesStore})
+@connect({
+  places: BoundsStore
+, displayedFacilityTypes: FacilityTypesStore
+, listings: RetslyListingStore
+})
+
 export default class MapComponent extends React.Component {
   render() {
     let facilityTypes = [];
     let mapPlaces = [];
+
+    if(this.props.listings && this.props.listings.length > 0) {
+      this.props.listings.forEach((listing) => {
+
+        listing.geom = `{"type":"Point","coordinates":[${listing.coordinates[1]},${listing.coordinates[0]}]}`
+
+        mapPlaces.push(
+          <Place
+            place={listing}
+          />
+        );
+      });
+    }
 
     if(this.props.places && this.props.places.length > 0) {
       this.props.places.forEach((place) => {
