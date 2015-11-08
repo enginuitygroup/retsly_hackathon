@@ -31,8 +31,8 @@ export default class Listing extends React.Component {
       listing_data = this.props.listing;
 
       let price = `$${listing_data.price.toLocaleString()}`
-      let size = `${listing_data.squareFootage} SqFt`
-      let sub_address = `${listing_data.type} Prime ${listing_data.city} Home`
+      let size = `${listing_data.squareFootage} sqft`
+      let description = `${listing_data.type} Prime ${listing_data.city} Home`
 
       this.mls_data = (
         <div className="listing-wrapper">
@@ -42,22 +42,22 @@ export default class Listing extends React.Component {
             </div>
             <div className="col-xs-8">
               <h1>{listing_data.address}</h1>
-              <h2>{sub_address}</h2>
-            </div>
-
-            <div className="col-xs-3 corner-info">
-              <p>
-                {price}
-              <br/>
-                {size}
-              </p>
+              <h2>{description}</h2>
             </div>
           </div>
 
-              <img src={listing_data.media[0].url} />
-              <hr/>
 
-          <div className="row">
+          <div className="row icon-stuff">
+            <div className="col-xs-1">
+            </div>
+            <div className ="col-xs-2">
+              <h3>
+                {price}
+              </h3>
+              <h3>
+                {size}
+              </h3>
+            </div>
             <div className="icon-caption col-xs-1">
               {listing_data.bedrooms}
             </div>
@@ -79,6 +79,9 @@ export default class Listing extends React.Component {
               {GarageSvg}
             </div>
           </div>
+
+          <img src={listing_data.media[0].url} />
+          <hr/>
 
         </div>
       )
