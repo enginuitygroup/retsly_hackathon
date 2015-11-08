@@ -7,11 +7,12 @@ export default class Place extends React.Component {
     this.state = {
       geoJson: null
     , map: props.map
+    , onClick: null
     };
   }
 
   componentDidMount() {
-    let geoJson = L.geoJson(JSON.parse(this.props.place.geom));
+    let geoJson = this.createGeoJson.bind(this)(this.props.place);
 
     this.setState({geoJson});
 
@@ -43,11 +44,26 @@ export default class Place extends React.Component {
     ) {
       nextProps.map.removeLayer(this.state.geoJson);
 
-      let geoJson = L.geoJson(JSON.parse(nextProps.place.geom));
+      let geoJson = this.createGeoJson.bind(this)(nextProps.place);
 
       this.setState({geoJson});
 
       geoJson.addTo(nextProps.map);
+    }
+  }
+
+  createGeoJson(place) {
+    let geoJson = L.geoJson(JSON.parse(place.geom))
+
+    geoJson.on("click", this.handleClick.bind(this));
+
+    return geoJson;
+  }
+
+  handleClick(event) {
+    if(this.props.onClick) {
+      event.place = this.props.place;
+      this.props.onClick(event);
     }
   }
 
