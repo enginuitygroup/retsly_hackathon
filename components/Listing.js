@@ -90,7 +90,9 @@ export default class Listing extends React.Component {
   render() {
     return (
       <div className="listing">
-        <Retsly />
+        <Retsly
+          listingID={this.props.location.query.listingID}
+        />
         <HotZone />
 
         <hr />

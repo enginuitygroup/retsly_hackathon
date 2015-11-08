@@ -6,10 +6,16 @@ export default class RetslyListingData extends Action {
     super();
 
     let params = `access_token=${process.env.RETSLY_TOKEN}`;
-    fetch(`https://rets.io/api/v1/test_sf/listings/${listingId}?${params}`, {cors: true}).then(
+
+    fetch(`https://rets.io/api/v1/test_sf/listings/${listingId}?${params}`).then(
       this.handleSuccess.bind(this)
     , this.handleFailure.bind(this)
     );
+
+    // fetch(`https://rets.io/api/v1/test_sf/listings/${listingId}?${params}`, {cors: true}).then(
+    //   this.handleSuccess.bind(this)
+    // , this.handleFailure.bind(this)
+    // );
   }
 
   handleSuccess(response) {
