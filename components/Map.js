@@ -47,15 +47,25 @@ export default class MapComponent extends React.Component {
   handleBedsChange(event) {
     let value = event.target.value;
 
-    this.setState
+    this.setState({
+      beds: value
+    });
   }
 
   handleBathsChange(event) {
     let value = event.target.value;
+
+    this.setState({
+      baths: value
+    });
   }
 
   handlePriceChange(event) {
     let value = event.target.value;
+
+    this.setState({
+      price: value
+    });
   }
 
   handleMapMove(map) {
@@ -202,7 +212,7 @@ export default class MapComponent extends React.Component {
             zoom={15}
             minZoom={15}
             maxZoom={15}
-            handleMove={this.handleMapMove}
+            handleMove={this.handleMapMove.bind(this)}
           >
             {mapPlaces}
 
