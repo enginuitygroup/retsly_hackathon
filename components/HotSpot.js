@@ -4,7 +4,9 @@ import { Action, connect } from "griffin.js";
 import RetslyHotspotQuery from "../actions/RetslyHotspotQuery";
 import RetslyHotspotStore from "../stores/RetslyHotspotStore";
 
-@connect({total: RetslyHotspotStore})
+@connect({hotspotTotal: RetslyHotspotStore})
+@connect({broadTotal: RetslyHotspotStore})
+
 export default class HotZone extends React.Component {
   componentDidMount() {
     new RetslyHotspotQuery();
@@ -13,7 +15,8 @@ export default class HotZone extends React.Component {
   render() {
     return(
       <div id="hotspot">
-        <h1>{ this.props.total }</h1>
+        <h1>{ this.props.hotspotTotal }</h1>
+        <h1>{ this.props.broadTotal }</h1>
       </div>
     );
   }
