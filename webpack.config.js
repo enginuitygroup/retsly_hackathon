@@ -57,6 +57,7 @@ module.exports = {
       "process.env": {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       , HOODQ_TOKEN: JSON.stringify(process.env.HOODQ_TOKEN)
+      , RETSLY_TOKEN: JSON.stringify(process.env.RETSLY_TOKEN)
       }
     })
   ]
