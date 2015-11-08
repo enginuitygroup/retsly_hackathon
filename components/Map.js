@@ -19,7 +19,7 @@ import history from "../history";
 
 import "../styles/Map.less";
 
-const sanFranLatLng = L.latLng(37.75697456047672, -122.43288516998291);
+const sanFranLatLng = L.latLng(37.73732676207093, -122.43340015411378);
 
 @connect({
   places: BoundsStore
@@ -51,7 +51,7 @@ export default class MapComponent extends React.Component {
 
     this.setState({
       beds: value
-    }, this.fetchNewBounds.bind(this));
+    }, this.fetchNewRetslyBounds.bind(this));
   }
 
   handleBathsChange(event) {
@@ -59,7 +59,7 @@ export default class MapComponent extends React.Component {
 
     this.setState({
       baths: value
-    }, this.fetchNewBounds.bind(this));
+    }, this.fetchNewRetslyBounds.bind(this));
   }
 
   handlePriceChange(event) {
@@ -67,7 +67,7 @@ export default class MapComponent extends React.Component {
 
     this.setState({
       price: value
-    }, this.fetchNewBounds.bind(this));
+    }, this.fetchNewRetslyBounds.bind(this));
   }
 
   handleMapMove(map) {
@@ -75,14 +75,15 @@ export default class MapComponent extends React.Component {
     let northWest = mapBounds.getNorthWest();
     let southEast = mapBounds.getSouthEast();
 
+    new HoodQBounds(northWest, southEast);
+
     this.setState({
       northWestBounds: northWest
     , southEastBounds: southEast
-    }, this.fetchNewBounds.bind(this));
+    }, this.fetchNewRetslyBounds.bind(this));
   }
 
-  fetchNewBounds() {
-    new HoodQBounds(this.state.northWestBounds, this.state.southEastBounds);
+  fetchNewRetslyBounds() {
     new RetslyListingsByBox(this.state.northWestBounds, this.state.southEastBounds, {
       beds: this.state.beds
     , baths: this.state.baths
@@ -177,12 +178,12 @@ export default class MapComponent extends React.Component {
               Beds:
 
               <select onChange={this.handleBedsChange.bind(this)}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+                <option value="6">6+</option>
               </select>
             </label>
           </p>
@@ -191,11 +192,11 @@ export default class MapComponent extends React.Component {
               Baths:
 
               <select onChange={this.handleBathsChange.bind(this)}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
               </select>
             </label>
           </p>
