@@ -39,23 +39,21 @@ export default class Listing extends React.Component {
           <div className="col-xs-12">
             <h1>{listing_data.address}</h1>
             <h2>{sub_address}</h2>
-            
+
             <p>
               Price: {price}
             </p>
-            
-            <img src={listing_data.media[0].url} />
 
-            <p>
-              Desc: {listing_data.publicRemarks}
-            </p>
+            <img src={listing_data.media[0].url} />
+            <hr/>
 
             <div className="svg-icon">
-              <p>
+              <div className="icon-caption">
                 {listing_data.bedrooms}
-              </p>
-                {BedroomSvg}
+              </div>
+              {BedroomSvg}
             </div>
+
             <div className="svg-icon">
               {listing_data.baths}
               {BathroomSvg}
