@@ -19,7 +19,7 @@ import history from "../history";
 
 import "../styles/Map.less";
 
-const sanFranLatLng = L.latLng(37.75697456047672, -122.43288516998291);
+const sanFranLatLng = L.latLng(37.73732676207093, -122.43340015411378);
 
 @connect({
   places: BoundsStore
