@@ -1,25 +1,27 @@
 @import "./bootstrap_imports.less";
 
-img {
-  width: 600px;
-}
+.listing-wrapper {
+  width: 960px;
+  margin: 0 auto;
+  padding-top: 40px;
 
-.svg-wrapper {
-  color: @brand-primary;
-  display: inline-block;
-  size: auto;
+  h1 {
+    color: @brand-primary;
+  }
+
+  p {
+    font-size: 32px;
+    color: @hoodq-green2;
+  }
+
+  .corner-info p {
+    float: right;
+  }
 
   .icon-caption {
-    display: inline-block;
-    width: 120px;
-    height: 120px;
+    color: @brand-primary;
     font-size: 50px;
     font-weight: bold;
-  }
-  
-  .icon-svg {
-    display: inline-block;
-    width: 120px;
-    height: 120px;
+    text-align: right;
   }
 }
