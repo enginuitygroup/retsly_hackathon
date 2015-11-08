@@ -47,7 +47,7 @@ export default class HeatLayer extends React.Component {
     ) {
       nextProps.map.removeLayer(this.state.heatLayer);
 
-      let heatLayer = this.createHeatLayer(this.props.heatData);
+      let heatLayer = this.createHeatLayer(nextProps.heatData);
 
       this.setState({heatLayer});
 
