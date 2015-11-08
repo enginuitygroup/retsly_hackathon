@@ -79,7 +79,7 @@ export default class Listing extends React.Component {
 
   renderPackage() {
     if(this.props.package) {
-      let packageUrl = `https://staging-reports.hoodq.com/package/${ this.props.package.id }`;
+      let packageUrl = `https://beta.hoodq.com/package/${ this.props.package.id }`;
 
       return(
         <iframe width="100%" height="1400" src={ packageUrl } />
@@ -93,7 +93,6 @@ export default class Listing extends React.Component {
         <Retsly
           listingID={this.props.location.query.listingID}
         />
-        <HotSpot />
 
         <hr />
         <div className="demographics-content">
