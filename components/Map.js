@@ -7,54 +7,42 @@ import {connect} from "griffin.js";
 import BoundsStore from "../stores/BoundsStore";
 import FacilityTypesStore from "../stores/FacilityTypesStore";
 
+import Map from "./mapbox/Map";
+import Place from "./mapbox/Place";
+
 import "../styles/Map.less";
 
 const sanFranLatLng = L.latLng(37.773972, -122.431297);
 
 @connect({places: BoundsStore, displayedFacilityTypes: FacilityTypesStore})
 export default class MapComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      map: null
-    };
-  }
-
-  componentDidMount() {
-    let map = L.mapbox.map(this.refs.map, "tazsingh.ike094ed"
-    , {
-      center: sanFranLatLng
-    , zoom: 16
-    , minZoom: 14
-    });
-
-    let mapBounds = map.getBounds();
-
-    new HoodQBounds(mapBounds.getNorthWest(), mapBounds.getSouthEast());
-
-    this.setState({
-      map
-    });
-  }
-
   render() {
     let facilityTypes = [];
+    let mapPlaces = [];
 
-    if(this.props.places && this.props.places.length > 0 && this.state.map) {
+    if(this.props.places && this.props.places.length > 0) {
       this.props.places.forEach((place) => {
         if(place.place_category_key === "parks") {
           let facilities = place.features.Facilities;
+          let anyFacilityDisplayed = false;
 
           facilities.forEach((facility) => {
             if(!facilityTypes.includes(facility)) {
               facilityTypes.push(facility);
             }
-          })
 
-          L.geoJson(JSON.parse(place.geom), {
+            if(!anyFacilityDisplayed && this.props.displayedFacilityTypes.includes(facility)) {
+              anyFacilityDisplayed = true;
+            }
+          });
 
-          }).addTo(this.state.map);
+          if(anyFacilityDisplayed) {
+            mapPlaces.push(
+              <Place
+                place={place}
+              />
+            );
+          }
         }
       });
     }
@@ -76,8 +64,13 @@ export default class MapComponent extends React.Component {
         </div>
 
         <div className="col-xs-9 map-container">
-          <div ref="map">
-          </div>
+          <Map
+            center={sanFranLatLng}
+            zoom={16}
+            minZoom={14}
+          >
+            {mapPlaces}
+          </Map>
         </div>
       </div>
     )
