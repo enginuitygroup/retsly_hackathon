@@ -17,7 +17,7 @@ export default class RetslyListingData extends Action {
         params.concat(baths);
       }
       if(filters.price) {
-        let price = `&price[gt]${filter.price}`;
+        let price = `&price[gt]${filter.price.slice(0, -1)}`;
         params.concat(price)
       }
     }
