@@ -20,7 +20,7 @@ export default class RetslyListingData extends Action {
         params += baths;
       }
       if(filteringOptions.price) {
-        let price = `&price[gte]${filteringOptions.price}`;
+        let price = `&price[gte]=${filteringOptions.price}`;
         params += price;
       }
     }
