@@ -28,7 +28,7 @@ export default class MapComponent extends React.Component {
   handlePlaceClick(event) {
     history.pushState(
       null
-    , `/listing?address=${encodeURIComponent(event.place.address)}`
+    , `/listing?address=${encodeURIComponent(event.place.address)}&listingID=${encodeURIComponent(event.place.id)}`
     );
   }
 
