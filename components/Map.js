@@ -17,7 +17,7 @@ import history from "../history";
 
 import "../styles/Map.less";
 
-const sanFranLatLng = L.latLng(37.773972, -122.431297);
+const sanFranLatLng = L.latLng(37.75697456047672, -122.43288516998291);
 
 @connect({
   places: BoundsStore
@@ -68,12 +68,12 @@ export default class MapComponent extends React.Component {
               let parsedGeom = JSON.parse(place.geom);
 
               if(parsedGeom.type === "Point") {
-                heatData.push([parsedGeom.coordinates[1], parsedGeom.coordinates[0], 1.0]);
+                heatData.push([parsedGeom.coordinates[1], parsedGeom.coordinates[0], 0.5]);
               }
               else {
                 let centroid = turf.centroid(parsedGeom).geometry;
 
-                heatData.push([centroid.coordinates[1], centroid.coordinates[0], 1.0]);
+                heatData.push([centroid.coordinates[1], centroid.coordinates[0], 0.5]);
               }
             }
           });
@@ -109,17 +109,63 @@ export default class MapComponent extends React.Component {
 
     return (
       <div className="row hq-map">
-        <div className="col-xs-3">
+        <div className="col-xs-3 your-interests">
           <h1>Your Interests</h1>
 
           {facilities}
+
+          <h1>Listing Filters</h1>
+
+          <p>
+            <label>
+              Beds:
+
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6+</option>
+              </select>
+            </label>
+          </p>
+          <p>
+            <label>
+              Baths:
+
+              <select>
+                <option>1</option>
+                <option>1.5</option>
+                <option>2</option>
+                <option>2.5</option>
+                <option>3</option>
+                <option>3.5+</option>
+              </select>
+            </label>
+          </p>
+          <p>
+            <label>
+              Price Range:
+
+              <select>
+                <option>0-100,000</option>
+                <option>100,000-200,000</option>
+                <option>200,000-300,000</option>
+                <option>300,000-400,000</option>
+                <option>400,000-500,000</option>
+                <option>500,000+</option>
+              </select>
+            </label>
+          </p>
         </div>
 
         <div className="col-xs-9 map-container">
           <Map
             center={sanFranLatLng}
             zoom={16}
-            minZoom={14}
+            minZoom={16}
+            maxZoom={16}
           >
             {mapPlaces}
 

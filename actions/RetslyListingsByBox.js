@@ -2,7 +2,7 @@ import fetch from "isomorphic-fetch";
 import {Action} from "griffin.js";
 
 export default class RetslyListingData extends Action {
-  constructor(northWest, southEast) {
+  constructor(northWest, southEast, filteringOptions) {
     super();
 
     let params = `access_token=${process.env.RETSLY_TOKEN}&box=${northWest.lng},${northWest.lat},${southEast.lng},${southEast.lat}&limit=25&sortBy=price&`;
