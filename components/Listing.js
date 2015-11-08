@@ -11,7 +11,7 @@ import SearchStore from "../stores/SearchStore";
 import PackageStore from "../stores/PackageStore";
 
 import Retsly from "./Retsly";
-import HotZone from "./HotZone";
+import HotSpot from "./HotSpot";
 import DogIcon from "./listing/DogIcon";
 import FamilyIcon from "./listing/FamilyIcon";
 
@@ -93,7 +93,7 @@ export default class Listing extends React.Component {
         <Retsly
           listingID={this.props.location.query.listingID}
         />
-        <HotZone />
+        <HotSpot />
 
         <hr />
         <div className="demographics-content">
