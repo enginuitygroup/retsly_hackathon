@@ -10,6 +10,8 @@ import {connect} from "griffin.js";
 import SearchStore from "../stores/SearchStore";
 import PackageStore from "../stores/PackageStore";
 
+import Retsly from "./Retsly";
+import HotZone from "./HotZone";
 import DogIcon from "./listing/DogIcon";
 import FamilyIcon from "./listing/FamilyIcon";
 
@@ -20,7 +22,8 @@ import "../styles/Listing.less";
 
 export default class Listing extends React.Component {
   componentDidMount() {
-    new HoodQSearch("734 Tompkins Ave, San Francisco, CA");
+    let address = this.props.address;
+    new HoodQSearch(address);
   }
 
   findDemographics() {
@@ -87,15 +90,12 @@ export default class Listing extends React.Component {
   render() {
     return (
       <div className="listing">
+        <Retsly />
+        <HotZone />
+
+        <hr />
         <div className="demographics-content">
           <div className="row">
-            <div className="col-xs-12">
-              <h1>Address!</h1>
-              <h3>Listing Stuff!</h3>
-
-              <hr />
-            </div>
-
             <div className="col-xs-8">
               { this.renderDemographics() }
             </div>
