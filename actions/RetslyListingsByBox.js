@@ -25,7 +25,7 @@ export default class RetslyListingData extends Action {
       }
     }
 
-    fetch(`https://rets.io/api/v1/test_sf/listings?${params}`, {cors: true}).then(
+    fetch(`https://rets.io/api/v1/test_sf/listings${params}`, {cors: true}).then(
       this.handleSuccess.bind(this)
     , this.handleFailure.bind(this)
     );
