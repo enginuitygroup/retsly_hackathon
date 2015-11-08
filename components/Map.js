@@ -29,7 +29,7 @@ export default class MapComponent extends React.Component {
     if(this.props.listings && this.props.listings.length > 0) {
       this.props.listings.forEach((listing) => {
 
-        listing.geom = `{"type":"Point","coordinates":[${listing.coordinates[1]},${listing.coordinates[0]}]}`
+        listing.geom = `{"type":"Point","coordinates":[${listing.coordinates[0]},${listing.coordinates[1]}]}`
 
         mapPlaces.push(
           <Place
