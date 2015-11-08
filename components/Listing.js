@@ -11,7 +11,7 @@ import SearchStore from "../stores/SearchStore";
 import PackageStore from "../stores/PackageStore";
 
 import Retsly from "./Retsly";
-import HotZone from "./HotZone";
+import HotSpot from "./HotSpot";
 import DogIcon from "./listing/DogIcon";
 import FamilyIcon from "./listing/FamilyIcon";
 
@@ -22,7 +22,7 @@ import "../styles/Listing.less";
 
 export default class Listing extends React.Component {
   componentDidMount() {
-    let address = this.props.address;
+    let address = this.props.location.query.address;
     new HoodQSearch(address);
   }
 
@@ -90,8 +90,10 @@ export default class Listing extends React.Component {
   render() {
     return (
       <div className="listing">
-        <Retsly />
-        <HotZone />
+        <Retsly
+          listingID={this.props.location.query.listingID}
+        />
+        <HotSpot />
 
         <hr />
         <div className="demographics-content">

@@ -38,6 +38,7 @@
     "less-loader": "^2.2.1",
     "lodash": "^3.10.1",
     "mapbox.js": "^2.2.3",
+    "moment": "^2.10.6",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-router": "^1.0.0-rc4",
