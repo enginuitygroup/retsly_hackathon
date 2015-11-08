@@ -27,9 +27,9 @@ export default class Map extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.zoom) {
-      this.state.map.setZoom(nextProps.zoom);
-    }
+    //if(nextProps.zoom) {
+    //  this.state.map.setZoom(nextProps.zoom);
+    //}
   }
 
   handleMove(event) {
