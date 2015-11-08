@@ -13,7 +13,6 @@ import GarageSvg from "../images/HoodQ_Icon_Garage.svg"
 import "../styles/Retsly.less"
 
 @connect({listing: RetslyListingStore})
-
 export default class Listing extends React.Component {
   componentDidMount() {
     // TODO pass in listing Id from Map
@@ -39,11 +38,11 @@ export default class Listing extends React.Component {
           <div className="col-xs-12">
             <h1>{listing_data.address}</h1>
             <h2>{sub_address}</h2>
-            
+
             <p>
               Price: {price}
             </p>
-            
+
             <img src={listing_data.media[0].url} />
 
             <p>

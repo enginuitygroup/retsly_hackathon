@@ -77,7 +77,7 @@ export default class MapComponent extends React.Component {
     return (
       <div className="row hq-map">
         <div className="col-xs-3">
-          <h1>Options!!!</h1>
+          <h1>Facility Types</h1>
 
           {facilities}
         </div>
