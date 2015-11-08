@@ -34,8 +34,6 @@ export default class Map extends React.Component {
   }
 
   handleMove(event) {
-    console.log("HANDLE MOVE", event);
-
     let mapBounds = this.state.map.getBounds();
     let northWest = mapBounds.getNorthWest();
     let southEast = mapBounds.getSouthEast();
