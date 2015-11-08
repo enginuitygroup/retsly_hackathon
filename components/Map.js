@@ -178,12 +178,12 @@ export default class MapComponent extends React.Component {
               Beds:
 
               <select onChange={this.handleBedsChange.bind(this)}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
+                <option value="6">6+</option>
               </select>
             </label>
           </p>
@@ -192,11 +192,11 @@ export default class MapComponent extends React.Component {
               Baths:
 
               <select onChange={this.handleBathsChange.bind(this)}>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+                <option value="5">5+</option>
               </select>
             </label>
           </p>
