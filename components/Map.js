@@ -126,7 +126,7 @@ export default class MapComponent extends React.Component {
                 <option>3</option>
                 <option>4</option>
                 <option>5</option>
-                <option>6+</option>
+                <option>6</option>
               </select>
             </label>
           </p>
@@ -136,11 +136,10 @@ export default class MapComponent extends React.Component {
 
               <select>
                 <option>1</option>
-                <option>1.5</option>
                 <option>2</option>
-                <option>2.5</option>
                 <option>3</option>
-                <option>3.5+</option>
+                <option>4</option>
+                <option>5</option>
               </select>
             </label>
           </p>
@@ -149,11 +148,11 @@ export default class MapComponent extends React.Component {
               Price Range:
 
               <select>
-                <option>0-100,000</option>
-                <option>100,000-200,000</option>
-                <option>200,000-300,000</option>
-                <option>300,000-400,000</option>
-                <option>400,000-500,000</option>
+                <option>0+</option>
+                <option>100,000+</option>
+                <option>200,000+</option>
+                <option>300,000+</option>
+                <option>400,000+</option>
                 <option>500,000+</option>
               </select>
             </label>
