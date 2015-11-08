@@ -16,7 +16,9 @@ export default class Place extends React.Component {
 
     this.setState({geoJson});
 
-    geoJson.addTo(this.state.map);
+    if(this.state.map) {
+      geoJson.addTo(this.state.map);
+    }
   }
 
   componentWillUnmount() {

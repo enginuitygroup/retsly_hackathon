@@ -17,7 +17,9 @@ export default class HeatLayer extends React.Component {
 
     this.setState({heatLayer});
 
-    heatLayer.addTo(this.state.map);
+    if(this.state.map) {
+      heatLayer.addTo(this.state.map);
+    }
   }
 
   componentWillUnmount() {
@@ -55,8 +57,8 @@ export default class HeatLayer extends React.Component {
 
   createHeatLayer(data) {
     return L.heatLayer(data, {
-      radius: 300
-    , blur: 180
+      radius: 250
+    , blur: 140
     , gradient: {
       //  0: contour
       //, 0.1: "#ffeda0"
