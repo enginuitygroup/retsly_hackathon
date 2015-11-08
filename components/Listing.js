@@ -22,7 +22,8 @@ import "../styles/Listing.less";
 
 export default class Listing extends React.Component {
   componentDidMount() {
-    new HoodQSearch("734 Tompkins Ave, San Francisco, CA");
+    let address = this.props.address;
+    new HoodQSearch(address);
   }
 
   findDemographics() {
