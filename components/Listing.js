@@ -22,7 +22,7 @@ import "../styles/Listing.less";
 
 export default class Listing extends React.Component {
   componentDidMount() {
-    let address = this.props.address;
+    let address = this.props.location.query.address;
     new HoodQSearch(address);
   }
 
