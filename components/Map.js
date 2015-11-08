@@ -1,5 +1,6 @@
 import React from "react";
 import HoodQBounds from "../actions/HoodQBounds";
+import RetslyListingsByBox from "../actions/RetslyListingsByBox";
 import FacilityCheckbox from "./map/FacilityCheckbox";
 
 import {connect} from "griffin.js";
@@ -8,6 +9,7 @@ import turf from "turf";
 import BoundsStore from "../stores/BoundsStore";
 import FacilityTypesStore from "../stores/FacilityTypesStore";
 import RetslyListingBoxStore from "../stores/RetslyListingBoxStore";
+
 
 import Map from "./mapbox/Map";
 import Place from "./mapbox/Place";
@@ -25,11 +27,67 @@ const sanFranLatLng = L.latLng(37.75697456047672, -122.43288516998291);
 , listings: RetslyListingBoxStore
 })
 export default class MapComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      beds: null
+    , baths: null
+    , price: null
+    , northWestBounds: null
+    , southEastBounds: null
+    };
+  }
+
   handlePlaceClick(event) {
     history.pushState(
       null
     , `/listing?address=${encodeURIComponent(event.place.address)}&listingID=${encodeURIComponent(event.place.id)}`
     );
+  }
+
+  handleBedsChange(event) {
+    let value = event.target.value;
+
+    this.setState({
+      beds: value
+    }, this.fetchNewBounds.bind(this));
+  }
+
+  handleBathsChange(event) {
+    let value = event.target.value;
+
+    this.setState({
+      baths: value
+    }, this.fetchNewBounds.bind(this));
+  }
+
+  handlePriceChange(event) {
+    let value = event.target.value;
+
+    this.setState({
+      price: value
+    }, this.fetchNewBounds.bind(this));
+  }
+
+  handleMapMove(map) {
+    let mapBounds = map.getBounds();
+    let northWest = mapBounds.getNorthWest();
+    let southEast = mapBounds.getSouthEast();
+
+    this.setState({
+      northWestBounds: northWest
+    , southEastBounds: southEast
+    }, this.fetchNewBounds.bind(this));
+  }
+
+  fetchNewBounds() {
+    new HoodQBounds(this.state.northWestBounds, this.state.southEastBounds);
+    new RetslyListingsByBox(this.state.northWestBounds, this.state.southEastBounds, {
+      beds: this.state.beds
+    , baths: this.state.baths
+    , price: this.state.price
+    });
   }
 
   render() {
@@ -55,7 +113,7 @@ export default class MapComponent extends React.Component {
       this.props.places.forEach((place) => {
         if(place.place_category_key === "parks") {
           let facilities = place.features.Facilities;
-          let anyFacilityDisplayed = false;
+          //let anyFacilityDisplayed = false;
 
           facilities.forEach((facility) => {
             if(!facilityTypes.includes(facility)) {
@@ -63,28 +121,26 @@ export default class MapComponent extends React.Component {
             }
 
             if(this.props.displayedFacilityTypes.includes(facility)) {
-              anyFacilityDisplayed = true;
+              //anyFacilityDisplayed = true;
 
               let parsedGeom = JSON.parse(place.geom);
 
               if(parsedGeom.type === "Point") {
-                heatData.push([parsedGeom.coordinates[1], parsedGeom.coordinates[0], 0.5]);
+                heatData.push([parsedGeom.coordinates[1], parsedGeom.coordinates[0], 0.1]);
               }
               else {
                 let centroid = turf.centroid(parsedGeom).geometry;
 
-                heatData.push([centroid.coordinates[1], centroid.coordinates[0], 0.5]);
+                heatData.push([centroid.coordinates[1], centroid.coordinates[0], 0.1]);
               }
             }
           });
 
-          if(anyFacilityDisplayed) {
-            mapPlaces.push(
-              <Place
-                place={place}
-              />
-            );
-          }
+          mapPlaces.push(
+            <Place
+              place={place}
+            />
+          );
         }
       });
     }
@@ -120,13 +176,13 @@ export default class MapComponent extends React.Component {
             <label>
               Beds:
 
-              <select>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6+</option>
+              <select onChange={this.handleBedsChange.bind(this)}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
               </select>
             </label>
           </p>
@@ -134,13 +190,12 @@ export default class MapComponent extends React.Component {
             <label>
               Baths:
 
-              <select>
-                <option>1</option>
-                <option>1.5</option>
-                <option>2</option>
-                <option>2.5</option>
-                <option>3</option>
-                <option>3.5+</option>
+              <select onChange={this.handleBathsChange.bind(this)}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
               </select>
             </label>
           </p>
@@ -148,13 +203,13 @@ export default class MapComponent extends React.Component {
             <label>
               Price Range:
 
-              <select>
-                <option>0-100,000</option>
-                <option>100,000-200,000</option>
-                <option>200,000-300,000</option>
-                <option>300,000-400,000</option>
-                <option>400,000-500,000</option>
-                <option>500,000+</option>
+              <select onChange={this.handlePriceChange.bind(this)}>
+                <option value="0">0+</option>
+                <option value="100000">100,000+</option>
+                <option value="200000">200,000+</option>
+                <option value="300000">300,000+</option>
+                <option value="400000">400,000+</option>
+                <option value="500000">500,000+</option>
               </select>
             </label>
           </p>
@@ -163,9 +218,10 @@ export default class MapComponent extends React.Component {
         <div className="col-xs-9 map-container">
           <Map
             center={sanFranLatLng}
-            zoom={16}
-            minZoom={16}
-            maxZoom={16}
+            zoom={15}
+            minZoom={15}
+            maxZoom={15}
+            handleMove={this.handleMapMove.bind(this)}
           >
             {mapPlaces}
 

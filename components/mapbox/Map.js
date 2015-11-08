@@ -1,6 +1,5 @@
 import React from "react";
 import HoodQBounds from "../../actions/HoodQBounds";
-import RetslyListingsByBox from "../../actions/RetslyListingsByBox"
 
 import debounce from "lodash/function/debounce";
 
@@ -20,6 +19,8 @@ export default class Map extends React.Component {
     , zoom: this.props.zoom
     , minZoom: this.props.minZoom
     , maxZoom: this.props.maxZoom
+    , zoomControl: false
+    , attributionControl: false
     });
 
     map.on("move", debounce(this.handleMove.bind(this), 500));
@@ -39,20 +40,15 @@ export default class Map extends React.Component {
   }
 
   handleMove(event) {
-    let mapBounds = this.state.map.getBounds();
-    let northWest = mapBounds.getNorthWest();
-    let southEast = mapBounds.getSouthEast();
-
-    new HoodQBounds(northWest, southEast);
-    new RetslyListingsByBox(northWest, southEast);
+    if(this.props.handleMove) {
+      this.props.handleMove(this.state.map);
+    }
   }
 
   render() {
     let children = [];
 
     if(this.props.children) {
-      let index = 0;
-
       children = React.Children.map(this.props.children, (child) => {
         return React.cloneElement(child, {
           map: this.state.map

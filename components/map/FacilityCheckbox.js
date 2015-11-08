@@ -21,12 +21,19 @@ export default class FacilityCheckbox extends React.Component {
   }
 
   render() {
+    let checked = false;
+
+    if(this.props.displayedFacilityTypes && this.props.displayedFacilityTypes.includes(this.props.facility)) {
+      checked = true;
+    }
+
     return (
       <p>
         <label>
           <input
             type="checkbox"
             onChange={this.handleChange.bind(this)}
+            checked={checked}
           />
 
           {this.props.facility}
