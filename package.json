@@ -26,7 +26,6 @@
     "babel-runtime": "^5.8.25",
     "bootstrap": "^3.3.5",
     "css-loader": "^0.22.0",
-    "es6-promise": "^3.0.2",
     "express": "^4.13.3",
     "file-loader": "^0.8.4",
     "griffin.js": "^0.1.2",
@@ -34,6 +33,7 @@
     "isomorphic-fetch": "^2.2.0",
     "json-loader": "^0.5.3",
     "leaflet": "^0.7.7",
+    "leaflet.heat": "tazsingh/Leaflet.heat#b1b6092c54d1ceac57736aa798184ab065a187b2",
     "less": "^2.5.3",
     "less-loader": "^2.2.1",
     "lodash": "^3.10.1",
@@ -42,6 +42,7 @@
     "react-dom": "^0.14.2",
     "react-router": "^1.0.0-rc4",
     "style-loader": "^0.13.0",
+    "turf": "^2.0.2",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.3",
     "webpack-dev-server": "^1.12.1"
