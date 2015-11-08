@@ -2,7 +2,6 @@ import React from "react";
 
 import Demographics from "./listing/Demographics";
 
-
 import {Action} from "griffin.js";
 
 import HoodQSearch from "../actions/HoodQSearch";
@@ -21,7 +20,7 @@ import "../styles/Listing.less";
 
 export default class Listing extends React.Component {
   componentDidMount() {
-    new HoodQSearch("12 Main St, Butte MT");
+    new HoodQSearch(this.props.adress);
   }
 
   findDemographics() {
