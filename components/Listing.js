@@ -1,4 +1,5 @@
 import React from "react";
+
 import Demographics from "./listing/Demographics";
 
 
@@ -104,5 +105,3 @@ export default class Listing extends React.Component {
     )
   }
 }
-
-
