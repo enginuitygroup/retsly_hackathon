@@ -12,15 +12,15 @@ export default class RetslyListingData extends Action {
 
     if(filteringOptions) {
       if(filteringOptions.beds) {
-        let beds = `&bedrooms[gt]=${filteringOptions.beds}`;
+        let beds = `&bedrooms[gte]=${filteringOptions.beds}`;
         params += beds;
       }
       if(filteringOptions.baths) {
-        let baths = `&baths[gt]=${filteringOptions.baths}`;
+        let baths = `&baths[gte]=${filteringOptions.baths}`;
         params += baths;
       }
       if(filteringOptions.price) {
-        let price = `&price[gt]${filteringOptions.price.slice(0, -1)}`;
+        let price = `&price[gte]${filteringOptions.price.slice(0, -1)}`;
         params += price;
       }
     }
