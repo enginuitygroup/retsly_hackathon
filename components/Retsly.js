@@ -47,18 +47,20 @@ export default class Listing extends React.Component {
             <img src={listing_data.media[0].url} />
             <hr/>
 
-            <div className="svg-icon">
+            <div className="svg-wrapper">
               <div className="icon-caption">
                 {listing_data.bedrooms}
               </div>
-              {BedroomSvg}
+              <div className="svg-icon">
+                {BedroomSvg}
+              </div>
             </div>
 
-            <div className="svg-icon">
+            <div className="svg-wrapper">
               {listing_data.baths}
               {BathroomSvg}
             </div>
-            <div className="svg-icon">
+            <div className="svg-wrapper">
               {listing_data.garageSpaces}
               {GarageSvg}
             </div>
