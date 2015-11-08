@@ -7,7 +7,7 @@ export default class HoodQPackage extends Action {
 
     let params = `auth_token=${process.env.HOODQ_TOKEN}&package[address]=${address}&format=json`
 
-    fetch(`https://staging-platform.hoodq.com/packages.json?${params}`, {method: "PUT"}).then(
+    fetch(`https://platform.hoodq.com/packages.json?${params}`, {method: "PUT"}).then(
       this.handleSuccess.bind(this)
     , this.handleFailure.bind(this)
     );
@@ -15,6 +15,7 @@ export default class HoodQPackage extends Action {
 
   handleSuccess(response) {
     response.json().then((actualBody) => {
+      debugger;
       this.package = actualBody.package;
 
       this.dispatch();

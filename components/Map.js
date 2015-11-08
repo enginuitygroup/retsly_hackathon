@@ -55,7 +55,7 @@ export default class MapComponent extends React.Component {
       this.props.places.forEach((place) => {
         if(place.place_category_key === "parks") {
           let facilities = place.features.Facilities;
-          let anyFacilityDisplayed = false;
+          //let anyFacilityDisplayed = false;
 
           facilities.forEach((facility) => {
             if(!facilityTypes.includes(facility)) {
@@ -63,28 +63,28 @@ export default class MapComponent extends React.Component {
             }
 
             if(this.props.displayedFacilityTypes.includes(facility)) {
-              anyFacilityDisplayed = true;
+              //anyFacilityDisplayed = true;
 
               let parsedGeom = JSON.parse(place.geom);
 
               if(parsedGeom.type === "Point") {
-                heatData.push([parsedGeom.coordinates[1], parsedGeom.coordinates[0], 0.5]);
+                heatData.push([parsedGeom.coordinates[1], parsedGeom.coordinates[0], 0.1]);
               }
               else {
                 let centroid = turf.centroid(parsedGeom).geometry;
 
-                heatData.push([centroid.coordinates[1], centroid.coordinates[0], 0.5]);
+                heatData.push([centroid.coordinates[1], centroid.coordinates[0], 0.1]);
               }
             }
           });
 
-          if(anyFacilityDisplayed) {
+          //if(anyFacilityDisplayed) {
             mapPlaces.push(
               <Place
                 place={place}
               />
             );
-          }
+            //}
         }
       });
     }
@@ -163,9 +163,9 @@ export default class MapComponent extends React.Component {
         <div className="col-xs-9 map-container">
           <Map
             center={sanFranLatLng}
-            zoom={16}
-            minZoom={16}
-            maxZoom={16}
+            zoom={15}
+            minZoom={15}
+            maxZoom={15}
           >
             {mapPlaces}
 
