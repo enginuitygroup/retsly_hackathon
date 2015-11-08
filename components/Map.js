@@ -34,6 +34,8 @@ export default class MapComponent extends React.Component {
       beds: null
     , baths: null
     , price: null
+    , northWestBounds: null
+    , southEastBounds: null
     };
   }
 
@@ -49,7 +51,7 @@ export default class MapComponent extends React.Component {
 
     this.setState({
       beds: value
-    });
+    }, this.fetchNewBounds.bind(this));
   }
 
   handleBathsChange(event) {
@@ -57,7 +59,7 @@ export default class MapComponent extends React.Component {
 
     this.setState({
       baths: value
-    });
+    }, this.fetchNewBounds.bind(this));
   }
 
   handlePriceChange(event) {
@@ -65,7 +67,7 @@ export default class MapComponent extends React.Component {
 
     this.setState({
       price: value
-    });
+    }, this.fetchNewBounds.bind(this));
   }
 
   handleMapMove(map) {
@@ -73,8 +75,15 @@ export default class MapComponent extends React.Component {
     let northWest = mapBounds.getNorthWest();
     let southEast = mapBounds.getSouthEast();
 
-    new HoodQBounds(northWest, southEast);
-    new RetslyListingsByBox(northWest, southEast, {
+    this.setState({
+      northWestBounds: northWest
+    , southEastBounds: southEast
+    }, this.fetchNewBounds.bind(this));
+  }
+
+  fetchNewBounds() {
+    new HoodQBounds(this.state.northWestBounds, this.state.southEastBounds);
+    new RetslyListingsByBox(this.state.northWestBounds, this.state.southEastBounds, {
       beds: this.state.beds
     , baths: this.state.baths
     , price: this.state.price
