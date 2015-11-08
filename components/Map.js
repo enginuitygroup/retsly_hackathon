@@ -13,6 +13,8 @@ import Map from "./mapbox/Map";
 import Place from "./mapbox/Place";
 import HeatLayer from "./mapbox/HeatLayer";
 
+import history from "../history";
+
 import "../styles/Map.less";
 
 const sanFranLatLng = L.latLng(37.773972, -122.431297);
@@ -23,10 +25,17 @@ const sanFranLatLng = L.latLng(37.773972, -122.431297);
 , listings: RetslyListingStore
 })
 export default class MapComponent extends React.Component {
+  handlePlaceClick(event) {
+    history.pushState(
+      null
+    , `/listing?address=${encodeURIComponent(event.place.address)}`
+    );
+  }
+
   render() {
     let facilityTypes = [];
     let mapPlaces = [];
-    let heatData = {};
+    let heatData = [];
 
     if(this.props.listings && this.props.listings.length > 0) {
       this.props.listings.forEach((listing) => {
@@ -36,6 +45,7 @@ export default class MapComponent extends React.Component {
         mapPlaces.push(
           <Place
             place={listing}
+            onClick={this.handlePlaceClick.bind(this)}
           />
         );
       });
@@ -55,19 +65,15 @@ export default class MapComponent extends React.Component {
             if(this.props.displayedFacilityTypes.includes(facility)) {
               anyFacilityDisplayed = true;
 
-              if(!heatData[facility]) {
-                heatData[facility] = [];
-              }
-
               let parsedGeom = JSON.parse(place.geom);
 
               if(parsedGeom.type === "Point") {
-                heatData[facility].push([parsedGeom.coordinates[1], parsedGeom.coordinates[0], 1.0]);
+                heatData.push([parsedGeom.coordinates[1], parsedGeom.coordinates[0], 1.0]);
               }
               else {
                 let centroid = turf.centroid(parsedGeom).geometry;
 
-                heatData[facility].push([centroid.coordinates[1], centroid.coordinates[0], 1.0]);
+                heatData.push([centroid.coordinates[1], centroid.coordinates[0], 1.0]);
               }
             }
           });
@@ -83,14 +89,6 @@ export default class MapComponent extends React.Component {
       });
     }
 
-    let heatLayers = Object.keys(heatData).map((facilityType) => {
-      return (
-        <HeatLayer
-          heatData={heatData[facilityType]}
-        />
-      )
-    });
-
     let facilities = facilityTypes.map((facility) => {
       return (
         <FacilityCheckbox
@@ -98,6 +96,16 @@ export default class MapComponent extends React.Component {
         />
       );
     });
+
+    let heatLayer = [];
+
+    if(heatData.length > 0) {
+      heatLayer = (
+        <HeatLayer
+          heatData={heatData}
+        />
+      );
+    }
 
     return (
       <div className="row hq-map">
@@ -114,7 +122,8 @@ export default class MapComponent extends React.Component {
             minZoom={14}
           >
             {mapPlaces}
-            {heatLayers}
+
+            {heatLayer}
           </Map>
         </div>
       </div>
