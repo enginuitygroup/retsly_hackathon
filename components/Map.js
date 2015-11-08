@@ -167,7 +167,7 @@ export default class MapComponent extends React.Component {
             <label>
               Beds:
 
-              <select onChange={this.handleBedsChange}>
+              <select onChange={this.handleBedsChange.bind(this)}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -181,7 +181,7 @@ export default class MapComponent extends React.Component {
             <label>
               Baths:
 
-              <select onChange={this.handleBathsChange}>
+              <select onChange={this.handleBathsChange.bind(this)}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -194,7 +194,7 @@ export default class MapComponent extends React.Component {
             <label>
               Price Range:
 
-              <select onChange={this.handlePriceChange}>
+              <select onChange={this.handlePriceChange.bind(this)}>
                 <option value="0">0+</option>
                 <option value="100000">100,000+</option>
                 <option value="200000">200,000+</option>
