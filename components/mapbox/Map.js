@@ -19,6 +19,8 @@ export default class Map extends React.Component {
     , zoom: this.props.zoom
     , minZoom: this.props.minZoom
     , maxZoom: this.props.maxZoom
+    , zoomControl: false
+    , attributionControl: false
     });
 
     map.on("move", debounce(this.handleMove.bind(this), 500));
@@ -47,8 +49,6 @@ export default class Map extends React.Component {
     let children = [];
 
     if(this.props.children) {
-      let index = 0;
-
       children = React.Children.map(this.props.children, (child) => {
         return React.cloneElement(child, {
           map: this.state.map
