@@ -7,7 +7,7 @@ import turf from "turf";
 
 import BoundsStore from "../stores/BoundsStore";
 import FacilityTypesStore from "../stores/FacilityTypesStore";
-import RetslyListingStore from "../stores/RetslyListingStore";
+import RetslyListingBoxStore from "../stores/RetslyListingBoxStore";
 
 import Map from "./mapbox/Map";
 import Place from "./mapbox/Place";
@@ -22,7 +22,7 @@ const sanFranLatLng = L.latLng(37.773972, -122.431297);
 @connect({
   places: BoundsStore
 , displayedFacilityTypes: FacilityTypesStore
-, listings: RetslyListingStore
+, listings: RetslyListingBoxStore
 })
 export default class MapComponent extends React.Component {
   handlePlaceClick(event) {
