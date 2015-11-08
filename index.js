@@ -18,7 +18,7 @@ ReactDOM.render(
     <Route
       path="/" component={require("./components/Application")}
     >
-      <IndexRoute path="map" component={require("./components/Map")} />
+      <IndexRoute component={require("./components/Map")} />
 
       <Route path="listing" component={require("./components/Listing")} />
       <Route path="retsly_mls_data" component={require("./components/Retsly")} />
