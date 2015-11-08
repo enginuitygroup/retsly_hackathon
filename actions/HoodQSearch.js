@@ -1,6 +1,8 @@
 import fetch from "isomorphic-fetch";
 import {Action} from "griffin.js";
 
+import HoodQPackage from "./HoodQPackage";
+
 export default class HoodQSearch extends Action {
   constructor(address) {
     super();
@@ -18,6 +20,8 @@ export default class HoodQSearch extends Action {
       this.places = actualBody.search.places;
 
       this.dispatch();
+
+      new HoodQPackage(actualBody.search.address);
     })
   }
 

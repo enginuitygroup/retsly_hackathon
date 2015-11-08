@@ -11,6 +11,9 @@ import {connect} from "griffin.js";
 import SearchStore from "../stores/SearchStore";
 import PackageStore from "../stores/PackageStore";
 
+import DogIcon from "./listing/DogIcon";
+import FamilyIcon from "./listing/FamilyIcon";
+
 import "../styles/Listing.less";
 
 @connect({places: SearchStore})
@@ -35,8 +38,17 @@ export default class Listing extends React.Component {
     if(rawDemographics) {
       return(
         <div>
-          <h2 className="dog-stats">{ rawDemographics.features["Household Percentage With Dogs"] }%</h2>
-          <p>of households in the area are dog people.</p>
+          <h2 className="dog-stats">
+            { rawDemographics.features["Household Percentage With Dogs"] }<span className="tiny">%</span>
+          </h2>
+          <div className="row">
+            <div className="col-xs-6">
+              <p>of households in the area are dog people.</p>
+            </div>
+            <div className="col-xs-6">
+              <DogIcon />
+            </div>
+          </div>
         </div>
       )
     };
@@ -48,7 +60,15 @@ export default class Listing extends React.Component {
     if(rawDemographics) {
       return(
         <div>
-          <h2>Dominant Demographic: { rawDemographics.features["Dominant Tapestry Name"] }</h2>
+          <div className="row">
+            <div className="col-xs-2">
+              <FamilyIcon />
+            </div>
+            <div className="col-xs-10">
+              <h2>Dominant Demographic:</h2>
+              <h2 className="demographic-name">"{ rawDemographics.features["Dominant Tapestry Name"] }"</h2>
+            </div>
+          </div>
           <p>{ rawDemographics.features["Dominant Tapestry Description"] }</p>
         </div>
       )
@@ -57,10 +77,10 @@ export default class Listing extends React.Component {
 
   renderPackage() {
     if(this.props.package) {
-      let packageUrl = `https://beta.hoodq.com/package/${ this.props.package.package_id }/standard_coverage`
+      let packageUrl = `https://staging-reports.hoodq.com/package/${ this.props.package.id }`;
 
       return(
-        <iframe width="100%" height="1200" src= { packageUrl } />
+        <iframe width="100%" height="1400" src={ packageUrl } />
       )
     }
   }
@@ -68,18 +88,22 @@ export default class Listing extends React.Component {
   render() {
     return (
       <div className="listing">
-        <div className="row">
-          <div className="col-xs-12">
-            <h1>Address!</h1>
-            <h3>Listing Stuff!</h3>
-          </div>
+        <div className="demographics-content">
+          <div className="row">
+            <div className="col-xs-12">
+              <h1>Address!</h1>
+              <h3>Listing Stuff!</h3>
 
-          <div className="col-xs-9">
-            { this.renderDemographics() }
-          </div>
+              <hr />
+            </div>
 
-          <div className="col-xs-3">
-            { this.renderDogOwnership() }
+            <div className="col-xs-8">
+              { this.renderDemographics() }
+            </div>
+
+            <div className="col-xs-3 col-xs-offset-1">
+              { this.renderDogOwnership() }
+            </div>
           </div>
         </div>
 

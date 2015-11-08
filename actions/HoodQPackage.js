@@ -15,9 +15,9 @@ export default class HoodQPackage extends Action {
 
   handleSuccess(response) {
     response.json().then((actualBody) => {
-      // this.package = actualBody.package;
+      this.package = actualBody.package;
 
-      // this.dispatch();
+      this.dispatch();
     })
   }
 
