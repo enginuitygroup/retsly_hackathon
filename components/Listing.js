@@ -12,6 +12,7 @@ import SearchStore from "../stores/SearchStore";
 import PackageStore from "../stores/PackageStore";
 
 import DogIcon from "./listing/DogIcon";
+import FamilyIcon from "./listing/FamilyIcon";
 
 import "../styles/Listing.less";
 
@@ -59,7 +60,15 @@ export default class Listing extends React.Component {
     if(rawDemographics) {
       return(
         <div>
-          <h2>Dominant Demographic: { rawDemographics.features["Dominant Tapestry Name"] }</h2>
+          <div className="row">
+            <div className="col-xs-2">
+              <FamilyIcon />
+            </div>
+            <div className="col-xs-10">
+              <h2>Dominant Demographic:</h2>
+              <h2 className="demographic-name">"{ rawDemographics.features["Dominant Tapestry Name"] }"</h2>
+            </div>
+          </div>
           <p>{ rawDemographics.features["Dominant Tapestry Description"] }</p>
         </div>
       )
@@ -84,6 +93,8 @@ export default class Listing extends React.Component {
             <div className="col-xs-12">
               <h1>Address!</h1>
               <h3>Listing Stuff!</h3>
+
+              <hr />
             </div>
 
             <div className="col-xs-8">
