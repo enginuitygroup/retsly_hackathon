@@ -5,7 +5,7 @@ export default class RetslyListingData extends Action {
   constructor(northWest, southEast, filteringOptions) {
     super();
 
-    let params = `access_token=${process.env.RETSLY_TOKEN}&limit=25&sortBy=price&`;
+    let params = `?access_token=${process.env.RETSLY_TOKEN}&limit=25&sortBy=price`;
     let bbox = `&box=${northWest.lng},${northWest.lat},${southEast.lng},${southEast.lat}`;
 
     params.concat(bbox);
