@@ -9,6 +9,7 @@ import RetslyListingStore from "../stores/RetslyListingStore";
 import BedroomSvg from "../images/HoodQ_Icon_Bedrooms.svg";
 import BathroomSvg from "../images/HoodQ_Icon_Bathrooms.svg"
 import GarageSvg from "../images/HoodQ_Icon_Garage.svg"
+import PinSvg from "../images/HoodQ_Icon_HoodQHomePinShd.svg"
 
 import "../styles/Retsly.less"
 
@@ -29,45 +30,56 @@ export default class Listing extends React.Component {
     if(this.props.listing) {
       listing_data = this.props.listing;
 
-      let price = `$${listing_data.price}`
+      let price = `$${listing_data.price.toLocaleString()}`
       let size = `${listing_data.squareFootage} SqFt`
-      let sub_address = `${listing_data.type} Prime ${listing_data.city} home`
+      let sub_address = `${listing_data.type} Prime ${listing_data.city} Home`
 
       this.mls_data = (
-        <div className="row">
-          <div className="col-xs-12">
-            <h1>{listing_data.address}</h1>
-            <h2>{sub_address}</h2>
-
-            <p>
-              Price: {price}
-            </p>
-
-            <img src={listing_data.media[0].url} />
-            <hr/>
-
-            <div className="svg-wrapper">
-              <div className="icon-caption">
-                {listing_data.bedrooms}
-              </div>
-              <div className="svg-icon">
-                {BedroomSvg}
-              </div>
+        <div className="listing-wrapper">
+          <div className="row">
+            <div className="col-xs-1">
+              {PinSvg}
+            </div>
+            <div className="col-xs-8">
+              <h1>{listing_data.address}</h1>
+              <h2>{sub_address}</h2>
             </div>
 
-            <div className="svg-wrapper">
+            <div className="col-xs-3 corner-info">
+              <p>
+                {price}
+              <br/>
+                {size}
+              </p>
+            </div>
+          </div>
+
+              <img src={listing_data.media[0].url} />
+              <hr/>
+
+          <div className="row">
+            <div className="icon-caption col-xs-1">
+              {listing_data.bedrooms}
+            </div>
+            <div className="svg-icon col-xs-2">
+              {BedroomSvg}
+            </div>
+
+            <div className="icon-caption col-xs-1">
               {listing_data.baths}
+            </div>
+            <div className="svg-icon col-xs-2">
               {BathroomSvg}
             </div>
-            <div className="svg-wrapper">
+
+            <div className="icon-caption col-xs-1">
               {listing_data.garageSpaces}
+            </div>
+            <div className="svg-icon col-xs-2">
               {GarageSvg}
             </div>
-
-            <p>
-              Size: {size}
-            </p>
           </div>
+
         </div>
       )
     }
