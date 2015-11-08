@@ -19,6 +19,7 @@ export default class Map extends React.Component {
       center: this.props.center
     , zoom: this.props.zoom
     , minZoom: this.props.minZoom
+    , maxZoom: this.props.maxZoom
     });
 
     map.on("move", debounce(this.handleMove.bind(this), 500));
@@ -31,6 +32,10 @@ export default class Map extends React.Component {
     //if(nextProps.zoom) {
     //  this.state.map.setZoom(nextProps.zoom);
     //}
+  }
+
+  componentWillUnmount() {
+    this.state.map.remove();
   }
 
   handleMove(event) {

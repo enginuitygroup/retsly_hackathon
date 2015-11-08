@@ -28,6 +28,7 @@ export default class FacilityCheckbox extends React.Component {
             type="checkbox"
             onChange={this.handleChange.bind(this)}
           />
+
           {this.props.facility}
         </label>
       </p>
