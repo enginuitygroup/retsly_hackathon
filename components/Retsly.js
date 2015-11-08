@@ -10,7 +10,7 @@ import BedroomSvg from "../images/HoodQ_Icon_Bedrooms.svg";
 import BathroomSvg from "../images/HoodQ_Icon_Bathrooms.svg"
 import GarageSvg from "../images/HoodQ_Icon_Garage.svg"
 
-import "../styles/Listing.less"
+import "../styles/Retsly.less"
 
 @connect({listing: RetslyListingStore})
 
@@ -46,23 +46,23 @@ export default class Listing extends React.Component {
             <img src={listing_data.media[0].url} />
 
             <p>
-            Desc: {listing_data.publicRemarks}
+              Desc: {listing_data.publicRemarks}
             </p>
 
             <div className="svg-icon">
-              {BedroomSvg}
-              {listing_data.bedrooms}
+              <p>
+                {listing_data.bedrooms}
+              </p>
+                {BedroomSvg}
             </div>
             <div className="svg-icon">
-              {BathroomSvg}
               {listing_data.baths}
+              {BathroomSvg}
             </div>
             <div className="svg-icon">
-              {GarageSvg}
               {listing_data.garageSpaces}
+              {GarageSvg}
             </div>
-
-
 
             <p>
               Size: {size}
