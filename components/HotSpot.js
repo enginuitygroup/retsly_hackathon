@@ -44,14 +44,13 @@ export default class HotZone extends React.Component {
         <div id="hotspot">
           <h1>For the last year...</h1>
           <h1>the area around this property has been <span className="hotspot-description">{ this.generateHotspotText() }</span> the larger area.</h1>
+          <hr />
         </div>
       );
     }
   }
 
   render() {
-    let ratios = this.transactionsAreaRatio();
-
     return(
       <div id="hotspot">
         { this.renderHotspotContent() }

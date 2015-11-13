@@ -5,7 +5,7 @@ export default class HoodQPackage extends Action {
   constructor(address) {
     super();
 
-    let params = `auth_token=${process.env.HOODQ_TOKEN}&package[address]=${address}&format=json`
+    let params = `auth_token=${process.env.HOODQ_TOKEN}&package[address]=${encodeURIComponent(address)}&format=json`
 
     fetch(`https://platform.hoodq.com/packages.json?${params}`, {method: "PUT"}).then(
       this.handleSuccess.bind(this)

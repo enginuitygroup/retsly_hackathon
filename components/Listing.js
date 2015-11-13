@@ -98,7 +98,6 @@ export default class Listing extends React.Component {
           <HotSpot address={this.props.location.query.address}/>
         </div>
         <div className="demographics-content">
-          <hr />
           <div className="row">
             <div className="col-xs-8">
               { this.renderDemographics() }
