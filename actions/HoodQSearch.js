@@ -9,7 +9,7 @@ export default class HoodQSearch extends Action {
 
     let params = `auth_token=${process.env.HOODQ_TOKEN}&search[address]=${encodeURIComponent(address)}&format=json`
 
-    fetch(`https://staging-platform.hoodq.com/searches.json?${params}`, {method: "PUT"}).then(
+    fetch(`https://platform.hoodq.com/searches.json?${params}`, {method: "PUT"}).then(
       this.handleSuccess.bind(this)
     , this.handleFailure.bind(this)
     );
